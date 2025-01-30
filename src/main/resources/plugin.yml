@@ -1,0 +1,21 @@
+name: EssentialsXAddon64
+version: ${project.version}
+description: ${project.description}
+author: tbm00
+main: dev.tbm00.spigot.essentialsxaddon64.EssentialsXAddon64
+api-version: 1.17
+harddepend: [PlaceholderAPI]
+softdepend: [EssentialsX]
+commands:
+  nicks:
+    description: Base command for EssentialsXAddon64
+permissions:
+  essentialsxaddon64.reloadcache:
+    description: Ability to reload nickname cache
+    default: op
+  essentialsxaddon64.whois:
+    description: Ability to view nicknames of specific players
+    default: true
+  essentialsxaddon64.nicklist:
+    description: Ability to view nicknames of all online players
+    default: true

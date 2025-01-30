@@ -1,0 +1,25 @@
+# EssentialsXAddon64 v0.0.0-beta by @tbm00
+# https://github.com/tbm00/EssentialsXAddon64
+
+enabled: true
+
+# Reload nickname cache every X ticks
+autoCacheReloader:
+  enabled: true
+  ticksBetween: 6000
+
+# Appended to the start of the %essentialsxaddon64_displayname%
+# and %essentialsxaddon64_username% built-in placeholders
+nicknamePrefix: '~'
+
+# Define your own replacement output for other plugins' placeholders
+newPlaceholders:
+  essentials_afk: # creates %essentialsxaddon64_essentials_afk%
+    'yes': ' &8*AFK*&r'
+    'no': ''
+  supervanish_isvanished: # creates %essentialsxaddon64_supervanish_isvanished%
+    'Yes': ' &e*VANISHED*&r'
+    'No': ''
+  deluxecombat_has_protection: # creates %essentialsxaddon64_deluxecombat_has_protection%
+    'true': ' &6*GRACE*&r'
+    'false': ''
