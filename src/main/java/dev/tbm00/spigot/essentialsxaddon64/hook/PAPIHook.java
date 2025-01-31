@@ -16,7 +16,6 @@ import dev.tbm00.spigot.essentialsxaddon64.NickManager;
 public class PAPIHook extends PlaceholderExpansion {
     private final EssentialsXAddon64 javaPlugin;
     private HashMap<String, HashMap<String, String>> placeholderDefMap;
-    //private HashMap<String, String> playerPHCache = new HashMap<>();
     private String nicknamePrefix;
 
     public PAPIHook(EssentialsXAddon64 javaPlugin, ConfigHandler configHandler) {
@@ -70,18 +69,12 @@ public class PAPIHook extends PlaceholderExpansion {
             default: {
                 try {
                     if (placeholderDefMap.containsKey(identifier)) {
-                        //String cacheKey = player.getUniqueId().toString() + ":" + identifier;
-                        //if (playerPHCache.containsKey(cacheKey)) {
-                        //    return playerPHCache.get(cacheKey);
-                        //}
-
                         HashMap<String, String> replacementPairs = placeholderDefMap.get(identifier);
                         if (replacementPairs != null && !replacementPairs.isEmpty()) {
                             String originalValue = PlaceholderAPI.setPlaceholders(player, "%" + identifier + "%").trim();
                             String replacementValue = replacementPairs.get(originalValue);
 
                             if (replacementValue != null) {
-                                //playerPHCache.put(cacheKey, replacement);
                                 return replacementValue;
                             } else {
                                 javaPlugin.logRed("No replacement found for value '" + originalValue + "' in placeholder '" + "%" + identifier + "%" + "'.");
@@ -97,9 +90,4 @@ public class PAPIHook extends PlaceholderExpansion {
             } 
         }
     }
-
-    /* public void clearPlayerPHCache() {
-        playerPHCache.clear();
-        javaPlugin.log("Player placeholder cache cleared.");
-    } */
 }

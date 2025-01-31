@@ -13,14 +13,11 @@ import me.clip.placeholderapi.PlaceholderAPI;
 public class NickManager {
     private final EssentialsXAddon64 javaPlugin;
     private final ConfigHandler configHandler;
-    //private final PAPIHook papiHook;
     public static Map<String, String> user_map = new HashMap<>();; // key = username, value = nickname
-    
 
     public NickManager(EssentialsXAddon64 javaPlugin, ConfigHandler configHandler, PAPIHook papiHook) {
         this.javaPlugin = javaPlugin;
         this.configHandler = configHandler;
-        //this.papiHook = papiHook;
         startCacheSchedule();
     }
 
@@ -31,7 +28,7 @@ public class NickManager {
         new BukkitRunnable() {
             @Override
             public void run() {
-                javaPlugin.logWhite("[auto] Clearing and reloading cache...");
+                //javaPlugin.logWhite("[auto] Clearing and reloading cache...");
                 try {
                     reloadCache();
                     javaPlugin.logWhite("[auto] Cache reloaded!");
@@ -41,7 +38,7 @@ public class NickManager {
                 }
             }
         }.runTaskTimer(javaPlugin, 0L, ticksBetween);
-        javaPlugin.logWhite("Started autoCacheReloader!");
+        javaPlugin.logGreen("Started autoCacheReloader!");
     }
 
     // refresh caches with information for online players
@@ -51,8 +48,6 @@ public class NickManager {
         for (Player player : Bukkit.getOnlinePlayers()) {
             loadPlayerToCache(player);
         }
-
-        //papiHook.clearPlayerPHCache();
     }
 
     public void loadPlayerToCache(Player player) {
@@ -61,9 +56,9 @@ public class NickManager {
             if (nickname!=null) {
                 user_map.put(player.getName(), nickname);
                 javaPlugin.logWhite(player.getName() + "'s nickname stored in cache as: " + nickname);
-            } else { //delete
-                javaPlugin.logWhite(player.getName() + " has no nickname..: " + nickname);
-            }
+            }// else { //delete
+            //    javaPlugin.logWhite(player.getName() + " has no nickname..: " + nickname);
+            //}
         } catch (Exception e) {
             javaPlugin.logYellow(player.getName() + " caught excepting loading to cache map: " + e.getMessage());
         }
@@ -75,23 +70,20 @@ public class NickManager {
             if (nickname!=null) {
                 user_map.remove(player.getName());
                 javaPlugin.logWhite(player.getName() + "'s nickname removed from cache: " + nickname);
-            } else { //delete
-                javaPlugin.logWhite(player.getName() + " has no nickname..: " + nickname);
-            }
+            }// else { //delete
+            //    javaPlugin.logWhite(player.getName() + " has no nickname..: " + nickname);
+            //}
         } catch (Exception e) {
             javaPlugin.logYellow(player.getName() + " caught excepting unloading from cache map: " + e.getMessage());
         }
     }
 
     public String getNickname(Player player) {
-        //String playerNamePH = "%player_name%";
         String playerName = player.getName();
         String nickNamePH = "%essentials_nickname%";
         
-        //playerNamePH = PlaceholderAPI.setPlaceholders(player, playerNamePH);
         nickNamePH = PlaceholderAPI.setPlaceholders(player, nickNamePH);
-
-        javaPlugin.logWhite(playerName + " as " + nickNamePH);
+        //javaPlugin.logWhite(playerName + " as " + nickNamePH);
 
         if (!playerName.equals(nickNamePH)) {
             return nickNamePH;

@@ -25,15 +25,16 @@ public class EssentialsXAddon64 extends JavaPlugin {
             ChatColor.DARK_PURPLE + "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
 		);
 
-        if (getConfig().getBoolean("enabled")) {
-            configHandler = new ConfigHandler(this);
-            setupHooks();
+        configHandler = new ConfigHandler(this);
+        setupHooks();
+
+        if (configHandler.isNicknamesEnabled()) {
             nickManager = new NickManager(this, configHandler, papiHook);
             getCommand("nicks").setExecutor(new NicksCommand(this, nickManager));
             getServer().getPluginManager().registerEvents(new PlayerConnection(this, nickManager), this);
+            logGreen("Nickname extension enabled.");
         } else {
-            logYellow("Plugin disabled in config..!");
-            disablePlugin();
+            logYellow("Nickname extension disabled.");
         }
     }
 

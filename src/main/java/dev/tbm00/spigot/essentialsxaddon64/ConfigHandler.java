@@ -6,6 +6,7 @@ import org.bukkit.configuration.ConfigurationSection;
 
 public class ConfigHandler {
     private final EssentialsXAddon64 javaPlugin;
+    private boolean nicknamesEnabled;
     private boolean autoCacheReloaderEnabled;
     private int autoCacheReloaderTickBetween;
     private String nicknamePrefix = "";
@@ -20,14 +21,20 @@ public class ConfigHandler {
     public ConfigHandler(EssentialsXAddon64 javaPlugin) {
         this.javaPlugin = javaPlugin;
         try {
-            // Load autoCacheReloader
-            ConfigurationSection cacheSection = javaPlugin.getConfig().getConfigurationSection("autoCacheReloader");
-            if (cacheSection != null) {
-                loadCacheReloader(cacheSection);
-            }
+            ConfigurationSection nicknameSection = javaPlugin.getConfig().getConfigurationSection("nicknameExtension");
+            if (nicknameSection != null) {
+                // Load nicknames enabled
+                nicknamesEnabled = nicknameSection.getBoolean("enabled", false);
 
-            // Load nickname Prefix
-            nicknamePrefix = javaPlugin.getConfig().getString("nicknamePrefix", "");
+                // Load auto Cache Reloader
+                ConfigurationSection cacheSection = nicknameSection.getConfigurationSection("autoCacheReloader");
+                if (cacheSection != null) {
+                    loadCacheReloader(cacheSection);
+                }
+
+                // Load nickname Prefix
+                nicknamePrefix = nicknameSection.getString("nicknamePrefix", "");
+            }
 
             // Load new placeholders
             ConfigurationSection placeholderSection = javaPlugin.getConfig().getConfigurationSection("newPlaceholders");
@@ -65,6 +72,10 @@ public class ConfigHandler {
                 javaPlugin.logRed("Caught exception while loading new placeholder: " + newPlaceholder);
             }
         }
+    }
+
+    public boolean isNicknamesEnabled() {
+        return nicknamesEnabled;
     }
 
     public boolean isAutoCacheReloaderEnabled() {
