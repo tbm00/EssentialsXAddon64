@@ -1,4 +1,4 @@
-# EssentialsXAddon64 v0.0.0-beta by @tbm00
+# EssentialsXAddon64 v0.0.1-beta by @tbm00
 # https://github.com/tbm00/EssentialsXAddon64
 
 nicknameExtension:
@@ -14,10 +14,10 @@ nicknameExtension:
   nicknamePrefix: '~'
 
 # Define your own replacement output for other plugins' placeholders
-newPlaceholders: # []
-  essentials_afk: # creates %essentialsxaddon64_essentials_afk%
-    'yes': ' &8*AFK*&r'
-    'no': ''
+newPlaceholders: []
+  #essentials_afk: # creates %essentialsxaddon64_essentials_afk%
+    #'yes': ' &8*AFK*&r'
+    #'no': ''
   #supervanish_isvanished: # creates %essentialsxaddon64_supervanish_isvanished%
     #'Yes': ' &e*VANISHED*&r'
     #'No': ''

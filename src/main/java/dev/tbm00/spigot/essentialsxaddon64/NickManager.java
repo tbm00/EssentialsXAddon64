@@ -13,7 +13,7 @@ import me.clip.placeholderapi.PlaceholderAPI;
 public class NickManager {
     private final EssentialsXAddon64 javaPlugin;
     private final ConfigHandler configHandler;
-    public static Map<String, String> user_map = new HashMap<>();; // key = username, value = nickname
+    public static Map<String, String> user_map = new HashMap<>(); // key = username, value = nickname
 
     public NickManager(EssentialsXAddon64 javaPlugin, ConfigHandler configHandler, PAPIHook papiHook) {
         this.javaPlugin = javaPlugin;
@@ -38,7 +38,7 @@ public class NickManager {
                 }
             }
         }.runTaskTimer(javaPlugin, 0L, ticksBetween);
-        javaPlugin.logGreen("Started autoCacheReloader!");
+        javaPlugin.logGreen("Started autoCacheReloader.");
     }
 
     // refresh caches with information for online players

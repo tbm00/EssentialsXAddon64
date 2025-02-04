@@ -41,6 +41,7 @@ public class NicksCommand implements TabExecutor {
     }
 
     private boolean runNickList(CommandSender sender) {
+        nickManager.reloadCache();
         String outputHeader = (ChatColor.DARK_PURPLE + "--- " + ChatColor.LIGHT_PURPLE + "Online Players' Nicknames" + ChatColor.DARK_PURPLE + " ---");
         String outputList = "";
 
