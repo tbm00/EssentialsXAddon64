@@ -71,20 +71,29 @@ public class PAPIHook extends PlaceholderExpansion {
                     if (placeholderDefMap.containsKey(identifier)) {
                         HashMap<String, String> replacementPairs = placeholderDefMap.get(identifier);
                         if (replacementPairs != null && !replacementPairs.isEmpty()) {
-                            String originalValue = PlaceholderAPI.setPlaceholders(player, "%" + identifier + "%").trim();
-                            String replacementValue = replacementPairs.get(originalValue);
 
-                            if (replacementValue != null) {
-                                return replacementValue;
-                            } else {
-                                javaPlugin.logRed("No replacement found for value '" + originalValue + "' in placeholder '" + "%" + identifier + "%" + "'.");
-                                return "";
+                            String originalValue=null;
+                            try {originalValue = PlaceholderAPI.setPlaceholders(player, "%" + identifier + "%").trim();}
+                            catch (Exception e) {
+                                originalValue = "null";
+                            };
+                            if (originalValue.isBlank() || originalValue==null) {
+                                originalValue = "null";
                             }
+                            
+                            String replacementValue=null;
+                            try {replacementValue = replacementPairs.get(originalValue);}
+                            catch (Exception e) {
+                                replacementValue = "";
+                            };
+
+                            return replacementValue;
                         }
                         
                     } else return null;
                 } catch (Exception e) {
-                    javaPlugin.logRed("Error processing placeholder '" + identifier + "': " + e.getMessage());
+                    javaPlugin.logRed("Error processing placeholder '" + "%" + identifier + "%" + "': " + e.getMessage());
+                    return null;
                 }
                 return null;
             } 

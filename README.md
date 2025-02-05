@@ -37,7 +37,7 @@ Created by tbm00 for play.mc64.wtf.
 
 ## Config
 ```
-# EssentialsXAddon64 v0.0.1-beta by @tbm00
+# EssentialsXAddon64 v0.0.2-beta by @tbm00
 # https://github.com/tbm00/EssentialsXAddon64
 
 nicknameExtension:
@@ -63,4 +63,5 @@ newPlaceholders: []
   #deluxecombat_has_protection: # creates %essentialsxaddon64_deluxecombat_has_protection%
     #'true': ' &6*GRACE*&r'
     #'false': ''
+    #'null': ''
 ```
