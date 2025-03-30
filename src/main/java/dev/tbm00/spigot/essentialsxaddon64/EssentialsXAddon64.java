@@ -4,9 +4,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.earth2me.essentials.Essentials;
+//import com.earth2me.essentials.Essentials;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
 import dev.tbm00.spigot.essentialsxaddon64.command.NicksCommand;
@@ -18,7 +17,7 @@ public class EssentialsXAddon64 extends JavaPlugin {
     private NickManager nickManager;
     private ConfigHandler configHandler;
     private PAPIHook papiHook;
-    private Essentials essHook;
+    //private Essentials essHook;
 
     @Override
     public void onEnable() {
@@ -44,7 +43,7 @@ public class EssentialsXAddon64 extends JavaPlugin {
         }
 
         if (configHandler.isWorldChangeListenerEnabled()) {
-            getServer().getPluginManager().registerEvents(new PlayerWorldChange(this, essHook), this);
+            getServer().getPluginManager().registerEvents(new PlayerWorldChange(this), this);
             logGreen("World change listener enabled.");
         } else {
             logYellow("World change listener disabled.");
@@ -58,14 +57,14 @@ public class EssentialsXAddon64 extends JavaPlugin {
             return;
         }
 
-        if (!setupEssentials()) {
+        /*if (!setupEssentials()) {
             logRed("Essentials hook failed -- disabling plugin!");
             disablePlugin();
             return;
-        }
+        }*/
     }
 
-    private boolean setupEssentials() {
+    /*private boolean setupEssentials() {
         if (!isPluginAvailable("Essentials")) return false;
 
         Plugin essp = Bukkit.getPluginManager().getPlugin("Essentials");
@@ -75,7 +74,7 @@ public class EssentialsXAddon64 extends JavaPlugin {
 
         logGreen( "Essentials hooked.");
         return true;
-    }
+    }*/
 
     private boolean setupPlaceholders() {
         if (!isPluginAvailable("PlaceholderAPI")) return false;
