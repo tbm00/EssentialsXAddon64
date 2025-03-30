@@ -25,7 +25,11 @@ public class PlayerWorldChange implements Listener {
         if (ph.equalsIgnoreCase("yes")||ph.contains("yes")) {
             Bukkit.getScheduler().runTaskLater(javaPlugin, () -> {
                 if (!event.getPlayer().isOnline()) return;
-                Bukkit.dispatchCommand(event.getPlayer(), "fly");
+
+                String ph2 = PlaceholderAPI.setPlaceholders(event.getPlayer(), "%essentials_fly%");
+                if (ph2.equalsIgnoreCase("no")||ph.contains("no")) {
+                    Bukkit.dispatchCommand(event.getPlayer(), "fly");
+                }
             }, 5);
         }
     }
