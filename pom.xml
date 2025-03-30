@@ -6,7 +6,7 @@
 
     <groupId>dev.tbm00</groupId>
     <artifactId>EssentialsXAddon64</artifactId>
-    <version>0.0.2-beta</version>
+    <version>0.0.3-beta</version>
     <packaging>jar</packaging>
 
     <name>EssentialsXAddon64</name>
@@ -63,10 +63,6 @@
             <id>placeholderapi</id>
             <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
-        <!-- <repository>
-            <id>essentials-releases</id>
-            <url>https://repo.essentialsx.net/releases/</url>
-        </repository> -->
     </repositories>
 
     <dependencies>
@@ -82,11 +78,12 @@
             <version>2.11.6</version>
             <scope>provided</scope>
         </dependency>
-        <!-- <dependency>
+        <dependency>
             <groupId>net.essentialsx</groupId>
             <artifactId>EssentialsX</artifactId>
-            <version>2.19.0</version>
-            <scope>provided</scope>
-        </dependency> -->
+            <version>2.21.0-dev+180-fe27182</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/depend/EssentialsX-2.21.0-dev+180-fe27182.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>

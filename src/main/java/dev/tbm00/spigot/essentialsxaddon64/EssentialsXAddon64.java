@@ -3,16 +3,22 @@ package dev.tbm00.spigot.essentialsxaddon64;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import com.earth2me.essentials.Essentials;
+
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
 import dev.tbm00.spigot.essentialsxaddon64.command.NicksCommand;
 import dev.tbm00.spigot.essentialsxaddon64.hook.PAPIHook;
 import dev.tbm00.spigot.essentialsxaddon64.listener.PlayerConnection;
+import dev.tbm00.spigot.essentialsxaddon64.listener.PlayerWorldChange;
 
 public class EssentialsXAddon64 extends JavaPlugin {
     private NickManager nickManager;
     private ConfigHandler configHandler;
     private PAPIHook papiHook;
+    private Essentials essHook;
 
     @Override
     public void onEnable() {
@@ -36,6 +42,13 @@ public class EssentialsXAddon64 extends JavaPlugin {
         } else {
             logYellow("Nickname extension disabled.");
         }
+
+        if (configHandler.isWorldChangeListenerEnabled()) {
+            getServer().getPluginManager().registerEvents(new PlayerWorldChange(this, essHook), this);
+            logGreen("World change listener enabled.");
+        } else {
+            logYellow("World change listener disabled.");
+        }
     }
 
     private void setupHooks() {
@@ -44,6 +57,24 @@ public class EssentialsXAddon64 extends JavaPlugin {
             disablePlugin();
             return;
         }
+
+        if (!setupEssentials()) {
+            logRed("Essentials hook failed -- disabling plugin!");
+            disablePlugin();
+            return;
+        }
+    }
+
+    private boolean setupEssentials() {
+        if (!isPluginAvailable("Essentials")) return false;
+
+        Plugin essp = Bukkit.getPluginManager().getPlugin("Essentials");
+        if (essp.isEnabled() && essp instanceof Essentials)
+            essHook = (Essentials) essp;
+        else return false;
+
+        logGreen( "Essentials hooked.");
+        return true;
     }
 
     private boolean setupPlaceholders() {

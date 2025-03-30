@@ -6,6 +6,7 @@ import org.bukkit.configuration.ConfigurationSection;
 
 public class ConfigHandler {
     private final EssentialsXAddon64 javaPlugin;
+    private boolean worldChangeListenerEnabled;
     private boolean nicknamesEnabled;
     private boolean autoCacheReloaderEnabled;
     private int autoCacheReloaderTickBetween;
@@ -41,6 +42,9 @@ public class ConfigHandler {
             if (placeholderSection != null) {
                 loadPlaceholders(placeholderSection);
             }
+
+            // Load new world Change flight Listener
+            worldChangeListenerEnabled = javaPlugin.getConfig().contains("worldChangeKeepFlightEnabled") ? javaPlugin.getConfig().getBoolean("worldChangeKeepFlightEnabled") : false;
         } catch (Exception e) {
             javaPlugin.logRed("Caught exception loading config: ");
             javaPlugin.getLogger().warning(e.getMessage());
@@ -72,6 +76,10 @@ public class ConfigHandler {
                 javaPlugin.logRed("Caught exception while loading new placeholder: " + newPlaceholder);
             }
         }
+    }
+
+    public boolean isWorldChangeListenerEnabled() {
+        return worldChangeListenerEnabled;
     }
 
     public boolean isNicknamesEnabled() {

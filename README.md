@@ -6,6 +6,7 @@ Created by tbm00 for play.mc64.wtf.
 ## Features
 - Easily check who has an active EssentialsX nickname.
 - Define replacement output for other plugins' placeholders.
+- Re-enabled players' flight after they change worlds.
 
 ## Dependencies
 - **Java 17+**: REQUIRED
@@ -37,8 +38,10 @@ Created by tbm00 for play.mc64.wtf.
 
 ## Config
 ```
-# EssentialsXAddon64 v0.0.2-beta by @tbm00
+# EssentialsXAddon64 v0.0.3-beta by @tbm00
 # https://github.com/tbm00/EssentialsXAddon64
+
+worldChangeKeepFlightEnabled: true
 
 nicknameExtension:
   enabled: true
