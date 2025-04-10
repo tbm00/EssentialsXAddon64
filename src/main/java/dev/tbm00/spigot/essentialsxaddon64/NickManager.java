@@ -31,7 +31,7 @@ public class NickManager {
                 //javaPlugin.logWhite("[auto] Clearing and reloading cache...");
                 try {
                     reloadCache();
-                    javaPlugin.logWhite("[auto] Cache reloaded!");
+                    //javaPlugin.logWhite("[auto] Cache reloaded!");
                 } catch (Exception e) {
                     javaPlugin.logYellow("[auto] Exception... could not reload cache!");
                     e.printStackTrace();
