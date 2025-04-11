@@ -43,20 +43,23 @@ public class NicksCommand implements TabExecutor {
     private boolean runNickList(CommandSender sender) {
         nickManager.reloadCache();
         String outputHeader = (ChatColor.DARK_PURPLE + "--- " + ChatColor.LIGHT_PURPLE + "Online Players' Nicknames" + ChatColor.DARK_PURPLE + " ---");
-        String outputList = "";
+        StringBuilder outputList = new StringBuilder();
 
         try {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 String username = player.getName();
                 String nickname = NickManager.user_map.get(username);
-                if (nickname != null)
-                    outputList = "\n" + ChatColor.GRAY + "- " + username + " is nicknamed " + nickname;
+                if (nickname != null) {
+                    outputList.append("\n").append(ChatColor.GRAY)
+                              .append("- ").append(username)
+                              .append(" is nicknamed ").append(nickname);
+                }
             }
         } catch (Exception e) {
             javaPlugin.logYellow(sender.getName() + " caught excepting reading cache map: " + e.getMessage());
         }
         
-        if (!outputList.isBlank()) {
+        if (outputList.length() > 0) {
              sender.sendMessage(outputHeader + outputList);
         } else sender.sendMessage(ChatColor.LIGHT_PURPLE + "No one with a nickname is online right now!");
 
